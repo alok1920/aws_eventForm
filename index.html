@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+</head>
+<body>
+
+    <h2>Event Registration</h2>
+
+    <form action="/submit_form_endpoint" method="post">
+        <div>
+            <label for="eventId">Event ID:</label><br>
+            <input type="text" id="eventId" name="eventId">
+        </div>
+        <br>
+        <div>
+            <label for="eventName">Event Name:</label><br>
+            <input type="text" id="eventName" name="eventName">
+        </div>
+        <br>
+        <div>
+            <label for="customerName">Customer Name:</label><br>
+            <input type="text" id="customerName" name="customerName">
+        </div>
+        <br>
+        <div>
+            <label for="customerAge">Customer Age:</label><br>
+            <input type="number" id="customerAge" name="customerAge" min="1" max="120">
+        </div>
+        <br>
+        <div>
+            <label for="customerEmail">Customer Email:</label><br>
+            <input type="text" id="customerEmail" name="customerEmail" min="1" max="120">
+        </div>
+        <br>
+        <button type="submit">Register</button>
+    </form>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
