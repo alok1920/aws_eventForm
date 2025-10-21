@@ -107,7 +107,7 @@ Attaching role to Lambda
 
 **EventManagementFunction you need to write the following lambda function.**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   # Create a DynamoDB resource object using the boto3 library.  # It automatically connects to the DynamoDB endpoint in the same region  # as the Lambda function.  MyDynamoDB = boto3.resource('dynamodb')  # Select the specific DynamoDB table to interact with.  # The table name 'eventsDB' must exist in the correct region.  MyTable = MyDynamoDB.Table('eventsDB')  # Put a new item into the DynamoDB table.  MyTable.put_item(      Item={          # The 'Item' parameter is a dictionary containing the data to be stored.          # The key 'eventID' is the partition key for the 'eventsDB' table.          # It must be spelled correctly and match the table's schema,          # which is why it was changed from 'eventId' to 'eventID' in a previous step.          'eventID': event_id,          'eventName': event_name,          'customerName': customer_name,          'customerAge': customer_age      },      # The 'ConditionExpression' ensures that the item is only written if      # an item with the same partition key does not already exist.      # This prevents overwriting existing data.      ConditionExpression='attribute_not_exists(eventID)'  )   `
+**code:** [**https://github.com/alok1920/aws\_eventForm/blob/main/lambda.py**](https://github.com/alok1920/aws_eventForm/blob/main/lambda.py)
 
 **Breakdown:**
 
@@ -122,7 +122,7 @@ After pasting the code click Deploy, this will save the code. You can create tes
 
 **Use following code example for testing.**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   {    "eventId": 200,    "eventName": "Swimming",    "customerName": "Raju" ,    "customerAge": 30  }   `
+**code:** [**https://github.com/alok1920/aws\_eventForm/blob/main/test01\_lambdaFunction.json**](https://github.com/alok1920/aws_eventForm/blob/main/test01_lambdaFunction.json)
 
 **Breakdown:**
 
@@ -186,7 +186,7 @@ https://059o82cea0.execute-api.ap-south-1.amazonaws.com/development/register
 
 Use the fetch() function in JavaScript:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML``   const MyForm = document.querySelector("form");  MyForm.addEventListener("submit", async function(e) {      e.preventDefault();      const fetchedEventID = e.target[0].value;      const fetchedEventName = e.target[1].value;      const fetchedCustomerName = e.target[2].value;      const fetchedCustomerAge = e.target[3].value;      const fetchedCustomerEmail = e.target[4].value;      try {          const response = await fetch("https://059o82cea0.execute-api.ap-south-1.amazonaws.com/development/register", {              method: "POST",              headers: {                  "Content-Type": "application/json"              },              body: JSON.stringify({                  eid: fetchedEventID,                  ename: fetchedEventName,                  cname: fetchedCustomerName,                  cage: fetchedCustomerAge,                  cemail: fetchedCustomerEmail              })          });          if (!response.ok) {              throw new Error(`HTTP error! status: ${response.status}`);          }          const result = await response.json();          console.log("Success:", result);          alert("Registration successful!");      } catch (error) {          console.error("Fetch error:", error);          alert("Something went wrong. Check console for details.");      }  });   ``
+Code: [https://github.com/alok1920/aws\_eventForm/blob/main/app.js](https://github.com/alok1920/aws_eventForm/blob/main/app.js)
 
 **Breakdown:**
 
@@ -214,7 +214,7 @@ you changed "123" → 123 (a true integer). Now DynamoDB sees it as Number (N) a
 
 **Full Lambda handler snippet:**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   import json  import boto3  def lambda_handler(event, context):      print(event)      event_id = int(event['eid'])      event_name = event['ename']      customer_name = event['cname']      customer_age = event['cage']      customer_email = event['cemail']      MyDynamoDB = boto3.resource('dynamodb')      MyTable = MyDynamoDB.Table('eventsDB')      MyTable.put_item(          Item={              # Change the key name from 'eventId' to 'eventID' to match the table's partition key              'eventID': event_id,              'eventName': event_name,              'customerName': customer_name,              'customerAge': customer_age,              'customerEmail': customer_email          },          ConditionExpression='attribute_not_exists(eventID)'      )   `
+**code:** [**https://github.com/alok1920/aws\_eventForm/blob/main/lambda.py**](https://github.com/alok1920/aws_eventForm/blob/main/lambda.py)
 
 **Breakdown:**
 
